@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  --color-cyber-bg: #0A0E1A;
+  --color-cyber-surface: #0D1220;
+  --color-cyber-border: #1E293B;
+  --color-cyber-text: #E2E8F0;
+  --color-cyber-muted: #64748B;
+  --color-cyber-accent: #DC2626;
+  --color-cyber-danger: #EF4444;
+  --color-cyber-warning: #F59E0B;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-cyber-bg);
+  background-image:
+    linear-gradient(rgba(220, 38, 38, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 38, 38, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.6); }
+  50% { box-shadow: 0 0 10px 2px rgba(220, 38, 38, 0.6); }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2.2s ease-in-out infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+.animate-blink {
+  animation: blink-cursor 1s step-start infinite;
+}
+
+select option {
+  background: var(--color-cyber-surface);
+  color: var(--color-cyber-text);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #334155;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cyber-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-cyber-border);
+  border-radius: 2px;
+}
