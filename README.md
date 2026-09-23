@@ -1,24 +1,24 @@
 # CyberLab Dashboard
 
-**Plataforma completa de treinamento ofensivo em ciberseguranca** com 22 modulos integrados, cobrindo todo o ciclo de um pentest — do reconhecimento a exfiltracao — com mapeamento MITRE ATT&CK, integracao C2, scanner de rede, captura de pacotes e sistema de gamificacao.
+**Plataforma completa de treinamento ofensivo em cibersegurança** com 22 módulos integrados, cobrindo todo o ciclo de um pentest — do reconhecimento à exfiltração — com mapeamento MITRE ATT&CK, integração C2, scanner de rede, captura de pacotes e sistema de gamificação.
 
-> **Aviso:** Este repositorio contem ferramentas ofensivas para fins **exclusivamente educacionais**. Leia o [SECURITY.md](SECURITY.md) antes de utilizar. Uso contra sistemas sem autorizacao e ilegal.
+> **Aviso:** Este repositório contém ferramentas ofensivas para fins **exclusivamente educacionais**. Leia o [SECURITY.md](SECURITY.md) antes de utilizar. Uso contra sistemas sem autorização é ilegal.
 
-Desenvolvido como projeto de TCC em Seguranca da Informacao (Senac).
+Desenvolvido como projeto de TCC em Segurança da Informação (Senac).
 
 ## Arquitetura
 
 ```
 +-----------------------------------------------------------+
 |                    CyberLab (React 19)                    |
-|  22 modulos  -  Tailwind CSS 4  -  Vite 8  -  SPA ~7k LOC |
+|  22 módulos  -  Tailwind CSS 4  -  Vite 8  -  SPA ~7k LOC |
 +---------------+----------------------+--------------------+
                 | REST API             | Realtime / Auth
                 v                      v
 +------------------------+   +-----------------------------+
 |  Bridge (FastAPI)      |   |  Supabase                   |
-|  - Port scanner        |   |  - PostgreSQL (sessoes,     |
-|  - Packet capture      |   |    tecnicas, VMs, creds,    |
+|  - Port scanner        |   |  - PostgreSQL (sessões,     |
+|  - Packet capture      |   |    técnicas, VMs, creds,    |
 |  - SSE streaming       |   |    IOCs, scans, loot)       |
 |  - Sliver gRPC proxy   |   |  - Auth (email/password)    |
 +----------+-------------+   |  - Realtime subscriptions   |
@@ -32,83 +32,83 @@ Desenvolvido como projeto de TCC em Seguranca da Informacao (Senac).
 +------------------------+
 ```
 
-## Stack Tecnica
+## Stack Técnica
 
 | Camada | Tecnologia | Detalhe |
 |---|---|---|
-| Frontend | React 19, Tailwind CSS 4, Vite 8 | SPA com ~7000 linhas, 22 modulos, dark theme, responsivo |
+| Frontend | React 19, Tailwind CSS 4, Vite 8 | SPA com ~7000 linhas, 22 módulos, dark theme, responsivo |
 | Backend | Supabase (PostgreSQL + Realtime) | 10+ tabelas, auth, subscriptions em tempo real |
 | Bridge | FastAPI (Python) | Proxy REST-to-gRPC, raw sockets, asyncio, SSE |
 | C2 | Sliver (Go) | Command & Control via gRPC, beacons e sessions |
-| Relatorios | jsPDF + AutoTable | Export de writeups e cobertura MITRE em PDF |
-| Linter | oxlint | Analise estatica do codigo |
+| Relatórios | jsPDF + AutoTable | Export de writeups e cobertura MITRE em PDF |
+| Linter | oxlint | Análise estática do código |
 
-## Modulos
+## Módulos
 
-### Gestao de Lab (4 modulos)
-- **Overview** — dashboard central com metricas: sessoes, tecnicas, taxa de sucesso, horas, cobertura MITRE e CVE feed (NVD)
-- **Sessoes** — CRUD de sessoes de lab com objetivo, checklist das 14 fases MITRE e status
-- **Tecnicas** — registro de cada tecnica executada mapeada para MITRE ATT&CK (tatica, ID, resultado, notas de deteccao)
-- **Timeline** — visualizacao cronologica de todas as acoes
+### Gestão de Lab (4 módulos)
+- **Overview** — dashboard central com métricas: sessões, técnicas, taxa de sucesso, horas, cobertura MITRE e CVE feed (NVD)
+- **Sessões** — CRUD de sessões de lab com objetivo, checklist das 14 fases MITRE e status
+- **Técnicas** — registro de cada técnica executada mapeada para MITRE ATT&CK (tática, ID, resultado, notas de detecção)
+- **Timeline** — visualização cronológica de todas as ações
 
-### Infraestrutura (4 modulos)
-- **VMs** — cadastro de maquinas do lab (atacante/vitima/infra) com link automatico para sessoes Sliver via hostname
+### Infraestrutura (4 módulos)
+- **VMs** — cadastro de máquinas do lab (atacante/vítima/infra) com link automático para sessões Sliver via hostname
 - **Credenciais** — cofre de creds capturadas (senhas, NTLM hashes, Kerberos tickets, SSH keys, tokens)
-- **Mapa de Rede** — topologia visual com cores por role e conexoes entre VMs
-- **Lab Check** — checklist pre-lab que valida bridge, Sliver, listeners, VMs e Supabase
+- **Mapa de Rede** — topologia visual com cores por role e conexões entre VMs
+- **Lab Check** — checklist pré-lab que valida bridge, Sliver, listeners, VMs e Supabase
 
-### Ferramentas Ofensivas (9 modulos)
-- **MITRE ATT&CK Matrix** — heatmap completo das 14 taticas com cobertura pessoal
+### Ferramentas Ofensivas (9 módulos)
+- **MITRE ATT&CK Matrix** — heatmap completo das 14 táticas com cobertura pessoal
 - **Google Dorks** — templates de reconhecimento passivo organizados por categoria
 - **CyberScan** — port scanner com 3 perfis (Quick/Default/Full), banner grabbing e OS fingerprinting via asyncio
 - **Beacon Lab** — construtor visual de implants Sliver C2 (Windows/Linux/macOS, HTTP/HTTPS/mTLS, jitter)
-- **VirusTotal** — consulta de hashes, IPs, dominios e URLs na API do VT (70+ engines)
-- **IOC Tracker** — gestao de indicadores de compromisso (hashes, IPs, dominios, regras Sigma/YARA)
-- **Script Arsenal** — 55+ scripts em 8 categorias com analise de detectabilidade e Obfuscation Lab
-- **Playbooks** — 4 metodologias completas (External, Internal/AD, Web App, Wireless) com comandos copiaveis
+- **VirusTotal** — consulta de hashes, IPs, domínios e URLs na API do VT (70+ engines)
+- **IOC Tracker** — gestão de indicadores de compromisso (hashes, IPs, domínios, regras Sigma/YARA)
+- **Script Arsenal** — 55+ scripts em 8 categorias com análise de detectabilidade e Obfuscation Lab
+- **Playbooks** — 4 metodologias completas (External, Internal/AD, Web App, Wireless) com comandos copiáveis
 - **Net Monitor** — packet capture em tempo real via raw sockets + SSE, interface estilo Wireshark
 
-### Estudo e Documentacao (5 modulos)
-- **Ranking** — gamificacao com XP, 6 ranks (Script Kiddie a Shadow Broker) e achievements
-- **Flashcards** — quiz multipla escolha com 4 opcoes por pergunta, criacao de cards customizados e persistencia local
-- **Comparar Sessoes** — diff lado a lado de duas sessoes (tecnicas, sucesso, taticas, ferramentas, duracao)
-- **Writeup** — gerador automatico de relatorio em Markdown por sessao
-- **ATT&CK Export** — export JSON compativel com MITRE ATT&CK Navigator
+### Estudo e Documentação (5 módulos)
+- **Ranking** — gamificação com XP, 6 ranks (Script Kiddie a Shadow Broker) e achievements
+- **Flashcards** — quiz múltipla escolha com 4 opções por pergunta, criação de cards customizados e persistência local
+- **Comparar Sessões** — diff lado a lado de duas sessões (técnicas, sucesso, táticas, ferramentas, duração)
+- **Writeup** — gerador automático de relatório em Markdown por sessão
+- **ATT&CK Export** — export JSON compatível com MITRE ATT&CK Navigator
 
-### Sliver C2 (1 modulo, opcional)
-- Painel integrado: sessoes/beacons ativos, execucao remota, upload/download, screenshots, processos, conexoes de rede
+### Sliver C2 (1 módulo, opcional)
+- Painel integrado: sessões/beacons ativos, execução remota, upload/download, screenshots, processos, conexões de rede
 - Arquitetura: `React <-> FastAPI (REST) <-> Sliver (gRPC)`
 
 ## Script Arsenal
 
-55+ scripts prontos em 8 categorias, cada um com explicacao tecnica, pre-requisitos e analise de detectabilidade em duas camadas (estatica + comportamental):
+55+ scripts prontos em 8 categorias, cada um com explicação técnica, pré-requisitos e análise de detectabilidade em duas camadas (estática + comportamental):
 
 | Categoria | Qtd | Linguagens |
 |---|---|---|
 | Reverse Shells | 13 | Bash, Python, PowerShell, PHP, Netcat, Socat, Perl, Ruby, Lua, Java |
-| Enumeracao Linux | 6 | Bash |
-| Enumeracao Windows | 6 | PowerShell |
+| Enumeração Linux | 6 | Bash |
+| Enumeração Windows | 6 | PowerShell |
 | Privilege Escalation | 6 | Bash, PowerShell |
-| Persistencia | 5 | Bash, PowerShell |
+| Persistência | 5 | Bash, PowerShell |
 | Lateral Movement | 6 | Bash |
-| Exfiltracao | 6 | Bash, PowerShell, CMD |
+| Exfiltração | 6 | Bash, PowerShell, CMD |
 | Evasion & Stealth | 7 | Bash, Python |
 
-**Detectabilidade:** cada script classifica o risco de deteccao considerando assinaturas estaticas (hash, YARA, AV) e monitoramento comportamental (syscalls, EDR, HIDS). Escala de 4 niveis: Baixa, Media, Alta, Muito Alta.
+**Detectabilidade:** cada script classifica o risco de detecção considerando assinaturas estáticas (hash, YARA, AV) e monitoramento comportamental (syscalls, EDR, HIDS). Escala de 4 níveis: Baixa, Média, Alta, Muito Alta.
 
 **Obfuscation Lab:** gera 6 variantes ofuscadas de qualquer comando — Base64, Hex, Reversed, XOR, CharCode (PS), EncodedCommand (PS).
 
-## Competencias Demonstradas
+## Competências Demonstradas
 
-| Area | Habilidades |
+| Área | Habilidades |
 |---|---|
 | **Frontend** | React 19 (hooks, state management, componentes), Tailwind CSS 4, Vite 8, SPA architecture |
 | **Backend** | Supabase (PostgreSQL, Row Level Security, Realtime), FastAPI, REST APIs |
-| **Seguranca Ofensiva** | MITRE ATT&CK (14 taticas, kill chain), pentest methodology, C2 operations, evasion techniques |
-| **Seguranca Defensiva** | Analise de detectabilidade (estatica vs comportamental), EDR/SIEM awareness, IOC management |
+| **Segurança Ofensiva** | MITRE ATT&CK (14 táticas, kill chain), pentest methodology, C2 operations, evasion techniques |
+| **Segurança Defensiva** | Análise de detectabilidade (estática vs comportamental), EDR/SIEM awareness, IOC management |
 | **Networking** | Port scanning (asyncio), packet capture (raw sockets), SSE streaming, banner grabbing |
 | **DevOps** | Vite build pipeline, environment variables, API proxy architecture |
-| **UX** | Dark theme, gamificacao, responsivo, multiplos modulos integrados em SPA |
+| **UX** | Dark theme, gamificação, responsivo, múltiplos módulos integrados em SPA |
 
 ## Setup
 
@@ -121,7 +121,7 @@ npm run dev
 
 Acesse `http://localhost:5173`.
 
-### Variaveis de Ambiente
+### Variáveis de Ambiente
 
 Copie `.env.example` para `.env` e configure:
 
@@ -141,26 +141,26 @@ VITE_VT_API_KEY=sua-virustotal-key              # opcional
 
 ```bash
 npm run dev       # Dev server com HMR
-npm run build     # Build de producao
+npm run build     # Build de produção
 npm run preview   # Preview do build
 npm run lint      # Linter (oxlint)
 ```
 
-## Seguranca
+## Segurança
 
 Consulte [SECURITY.md](SECURITY.md) para:
-- Politica de uso responsavel e principios eticos
-- Escopo e classificacao dos componentes ofensivos
-- Medidas de protecao implementadas (credenciais, ofuscacao, isolamento)
+- Política de uso responsável e princípios éticos
+- Escopo e classificação dos componentes ofensivos
+- Medidas de proteção implementadas (credenciais, ofuscação, isolamento)
 - Como reportar vulnerabilidades
-- Frameworks e referencias (MITRE, OWASP, PTES, NIST)
+- Frameworks e referências (MITRE, OWASP, PTES, NIST)
 
-## Licenca
+## Licença
 
-[MIT License](LICENSE) — com clausula de uso responsavel.
+[MIT License](LICENSE) — com cláusula de uso responsável.
 
-Este software contem ferramentas ofensivas destinadas **exclusivamente** a fins educacionais, testes de penetracao autorizados e pesquisa em seguranca da informacao. O uso contra sistemas sem autorizacao explicita e ilegal.
+Este software contém ferramentas ofensivas destinadas **exclusivamente** a fins educacionais, testes de penetração autorizados e pesquisa em segurança da informação. O uso contra sistemas sem autorização explícita é ilegal.
 
 ---
 
-Desenvolvido como TCC em Seguranca da Informacao — Senac (2026).
+Desenvolvido como TCC em Segurança da Informação — Senac (2026).

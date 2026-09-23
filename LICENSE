@@ -22,17 +22,17 @@ SOFTWARE.
 
 --- DISCLAIMER ---
 
-This software contains offensive security tools and scripts intended
-EXCLUSIVELY for educational purposes, authorized penetration testing, and
-cybersecurity research in controlled lab environments.
+Este software contém ferramentas de segurança ofensiva e scripts destinados
+EXCLUSIVAMENTE a fins educacionais, testes de penetração autorizados e
+pesquisa em cibersegurança em ambientes controlados de laboratório.
 
-The author assumes no responsibility for misuse of this software. Users are
-solely responsible for ensuring compliance with all applicable local, state,
-national, and international laws. Unauthorized access to computer systems is
-illegal and punishable by law.
+O autor não assume responsabilidade pelo uso indevido deste software. Os
+usuários são os únicos responsáveis por garantir conformidade com todas as
+leis locais, estaduais, nacionais e internacionais aplicáveis. O acesso não
+autorizado a sistemas computacionais é ilegal e punível por lei.
 
-By using this software, you agree that:
-1. You will only use it in environments you own or have explicit written
-   authorization to test.
-2. You will not use it for any malicious, unauthorized, or illegal activity.
-3. You understand the legal implications of offensive security tools.
+Ao utilizar este software, você concorda que:
+1. Utilizará apenas em ambientes que você possui ou tem autorização explícita
+   por escrito para testar.
+2. Não utilizará para qualquer atividade maliciosa, não autorizada ou ilegal.
+3. Compreende as implicações legais de ferramentas de segurança ofensiva.
