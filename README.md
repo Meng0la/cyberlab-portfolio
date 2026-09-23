@@ -1,49 +1,49 @@
-> **Nota:** Versao portfolio — credenciais e conteudo academico removidos. Codigo ofensivo mantido para fins educacionais.
-
 # CyberLab Dashboard
 
 **Plataforma completa de treinamento ofensivo em ciberseguranca** com 22 modulos integrados, cobrindo todo o ciclo de um pentest — do reconhecimento a exfiltracao — com mapeamento MITRE ATT&CK, integracao C2, scanner de rede, captura de pacotes e sistema de gamificacao.
 
-Desenvolvido como projeto de TCC em Seguranca da Informacao.
+> **Aviso:** Este repositorio contem ferramentas ofensivas para fins **exclusivamente educacionais**. Leia o [SECURITY.md](SECURITY.md) antes de utilizar. Uso contra sistemas sem autorizacao e ilegal.
+
+Desenvolvido como projeto de TCC em Seguranca da Informacao (Senac).
 
 ## Arquitetura
 
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    CyberLab (React 19)                  │
-│  22 modulos · Tailwind CSS 4 · Vite 8 · SPA ~6500 LOC  │
-└──────────────┬──────────────────────┬───────────────────┘
-               │ REST API             │ Realtime / Auth
-                                     
-┌──────────────────────┐   ┌─────────────────────────────┐
-│  Bridge (FastAPI)    │   │  Supabase                   │
-│  · Port scanner      │   │  · PostgreSQL (sessoes,     │
-│  · Packet capture    │   │    tecnicas, VMs, creds,    │
-│  · SSE streaming     │   │    IOCs, scans, loot)       │
-│  · Sliver gRPC proxy │   │  · Auth (email/password)    │
-└──────────┬───────────┘   │  · Realtime subscriptions   │
-           │ gRPC          └─────────────────────────────┘
-           
-┌──────────────────────┐
-│  Sliver C2 Server    │
-│  · Sessions/Beacons  │
-│  · Implant generation│
-│  · Remote execution  │
-└──────────────────────┘
++-----------------------------------------------------------+
+|                    CyberLab (React 19)                    |
+|  22 modulos  -  Tailwind CSS 4  -  Vite 8  -  SPA ~7k LOC |
++---------------+----------------------+--------------------+
+                | REST API             | Realtime / Auth
+                v                      v
++------------------------+   +-----------------------------+
+|  Bridge (FastAPI)      |   |  Supabase                   |
+|  - Port scanner        |   |  - PostgreSQL (sessoes,     |
+|  - Packet capture      |   |    tecnicas, VMs, creds,    |
+|  - SSE streaming       |   |    IOCs, scans, loot)       |
+|  - Sliver gRPC proxy   |   |  - Auth (email/password)    |
++----------+-------------+   |  - Realtime subscriptions   |
+           | gRPC             +-----------------------------+
+           v
++------------------------+
+|  Sliver C2 Server      |
+|  - Sessions/Beacons    |
+|  - Implant generation  |
+|  - Remote execution    |
++------------------------+
 ```
 
 ## Stack Tecnica
 
 | Camada | Tecnologia | Detalhe |
 |---|---|---|
-| Frontend | React 19, Tailwind CSS 4, Vite 8 | SPA com ~6500 linhas, 22 modulos, dark theme, responsivo |
+| Frontend | React 19, Tailwind CSS 4, Vite 8 | SPA com ~7000 linhas, 22 modulos, dark theme, responsivo |
 | Backend | Supabase (PostgreSQL + Realtime) | 10+ tabelas, auth, subscriptions em tempo real |
 | Bridge | FastAPI (Python) | Proxy REST-to-gRPC, raw sockets, asyncio, SSE |
 | C2 | Sliver (Go) | Command & Control via gRPC, beacons e sessions |
 | Relatorios | jsPDF + AutoTable | Export de writeups e cobertura MITRE em PDF |
 | Linter | oxlint | Analise estatica do codigo |
 
-## Funcionalidades Principais
+## Modulos
 
 ### Gestao de Lab (4 modulos)
 - **Overview** — dashboard central com metricas: sessoes, tecnicas, taxa de sucesso, horas, cobertura MITRE e CVE feed (NVD)
@@ -70,7 +70,7 @@ Desenvolvido como projeto de TCC em Seguranca da Informacao.
 
 ### Estudo e Documentacao (5 modulos)
 - **Ranking** — gamificacao com XP, 6 ranks (Script Kiddie a Shadow Broker) e achievements
-- **Flashcards** — quiz multipla escolha estilo Anki com 4 opcoes por pergunta, criacao de cards customizados e persistencia local
+- **Flashcards** — quiz multipla escolha com 4 opcoes por pergunta, criacao de cards customizados e persistencia local
 - **Comparar Sessoes** — diff lado a lado de duas sessoes (tecnicas, sucesso, taticas, ferramentas, duracao)
 - **Writeup** — gerador automatico de relatorio em Markdown por sessao
 - **ATT&CK Export** — export JSON compativel com MITRE ATT&CK Navigator
@@ -113,6 +113,8 @@ Desenvolvido como projeto de TCC em Seguranca da Informacao.
 ## Setup
 
 ```bash
+git clone https://github.com/Meng0la/cyberlab-portfolio.git
+cd cyberlab-portfolio
 npm install
 npm run dev
 ```
@@ -120,6 +122,12 @@ npm run dev
 Acesse `http://localhost:5173`.
 
 ### Variaveis de Ambiente
+
+Copie `.env.example` para `.env` e configure:
+
+```bash
+cp .env.example .env
+```
 
 ```env
 VITE_SUPABASE_URL=https://seu-projeto.supabase.co
@@ -138,6 +146,21 @@ npm run preview   # Preview do build
 npm run lint      # Linter (oxlint)
 ```
 
+## Seguranca
+
+Consulte [SECURITY.md](SECURITY.md) para:
+- Politica de uso responsavel e principios eticos
+- Escopo e classificacao dos componentes ofensivos
+- Medidas de protecao implementadas (credenciais, ofuscacao, isolamento)
+- Como reportar vulnerabilidades
+- Frameworks e referencias (MITRE, OWASP, PTES, NIST)
+
 ## Licenca
 
-Projeto academico — desenvolvido para TCC em Seguranca da Informacao.
+[MIT License](LICENSE) — com clausula de uso responsavel.
+
+Este software contem ferramentas ofensivas destinadas **exclusivamente** a fins educacionais, testes de penetracao autorizados e pesquisa em seguranca da informacao. O uso contra sistemas sem autorizacao explicita e ilegal.
+
+---
+
+Desenvolvido como TCC em Seguranca da Informacao — Senac (2026).
